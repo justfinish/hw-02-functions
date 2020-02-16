@@ -31,6 +31,25 @@ console.log('Problem 1:')
 
 // Add your code below this line
 
+function blackJack(pScore, dScore) {
+   let result
+
+   if ((pScore>21)&&(dScore>21)) {
+      result = 0
+   } else if (pScore>21) {
+      result = dScore
+   } else if (dScore>21) {
+      result = pScore
+   } else if (dScore >= pScore) {
+      result = dScore
+   } else {
+      result = pScore
+   }
+   return result
+}
+
+console.log(blackJack(21, 21))
+
 // Add your code above this line
 
 /** added for formatting purposes **/
@@ -76,6 +95,66 @@ console.log('Problem 2:')
 
 // Add your code below this line
 
+let word = "function"
+word = word.toUpperCase()
+let wordScore = 0
+
+for (i=0; i<word.length; i++) {
+   wordScore = wordScore + getLetterScore(word.charAt(i))
+}
+
+console.log(wordScore)
+
+function getLetterScore(letter) {
+   let letterScore = 0
+   switch(letter) {
+      case 'A': 
+      case 'E': 
+      case 'I':
+      case 'O':
+      case 'U':
+      case 'L':
+      case 'N':
+      case 'R':
+      case 'S':
+      case 'T': 
+         letterScore = 1   
+         break
+      case 'D':
+      case 'G': 
+         letterScore = 2  
+         break
+      case 'B':
+      case 'C':
+      case 'M':
+      case 'P':
+         letterScore = 3 
+         break
+      case 'F':
+      case 'H':
+      case 'V':
+      case 'W':
+      case 'Y': 
+         letterScore = 4
+         break
+      case 'K':
+         letterScore = 5
+         break
+      case 'J':
+      case 'X': 
+         letterScore = 8
+         break
+      case 'Q':
+      case 'Z':
+         letterScore = 10
+         break
+      default:
+         break
+      }
+   return letterScore
+}
+
+
 // Add your code above this line
 
 /** added for formatting purposes **/
@@ -115,6 +194,21 @@ console.log('Problem 3:')
 
 // Add your code below this line
 
+// maybe use For While loop here?
+function isPalidrome(word) {
+   let result = true
+   for (i=0; i<word.length/2; i++) {
+      if ((result === true) && (word[i] === word[word.length-1-i])) {
+         //do nothing and continue the loop
+      } else {
+         result = false
+      }
+   }
+   return result
+}
+
+console.log(isPalidrome("run"))
+
 // Add your code above this line
 
 /** added for formatting purposes **/
@@ -148,6 +242,22 @@ console.log('Problem 4:')
 
 // Add your code below this line
 
+function checkDoubleLetter(word) {
+   let result = false
+   if (word.length === 1) {
+      result = false
+   } else {
+      for (i=1; i<word.length; i++) { // should prob use for while loop
+         if (word.charAt(i) === word.charAt(i-1)) {
+            result = true
+         }
+      }   
+   }
+   return result
+}
+
+console.log(checkDoubleLetter("rune"))
+
 // Add your code above this line
 
 /** added for formatting purposes **/
@@ -162,7 +272,7 @@ Create a function named `wordCount()` that accepts a parameter called "phrase" w
 For example, the phrase: "olly olly in come free" should result in output that looks similar to the following:
 
 ```
-olly: 1
+olly: 2
 in: 1
 come: 1
 free: 1
@@ -207,6 +317,31 @@ Use the following test cases to confirm your program meets the success criteria
 console.log('Problem 5 - bonus:')
 
 // Add your code below this line
+
+let words = []
+let counts = []
+let input = "Humpty Dumpty sat on a wall Humpty Dumpty had a great fall"
+let parsed = (input.replace(/[^a-zA-Z ]/g, "")).split(" ")
+
+if (parsed.length > 0) {
+   for (i=0; i<parsed.length; i++) {
+      parsed[i] = parsed[i].toLowerCase()
+   }
+}
+
+for (i=0; i<parsed.length; i++) {
+   if (!words.includes(parsed[i])) {
+      words.push(parsed[i])
+      counts.push(parseInt("1"))
+   } else {
+      let position = words.indexOf(parsed[i])
+      counts[position] = counts[position] + 1
+   }
+}
+
+for (i=0; i<words.length; i++) {
+console.log(words[i] + ": " + counts[i])
+}
 
 // Add your code above this line
 
